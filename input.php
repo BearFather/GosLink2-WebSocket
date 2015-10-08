@@ -1,12 +1,14 @@
 <html>
 <body id="body">
 <link rel="stylesheet" type="text/css" href="style.css" />
-
 <?php
-$id=1233;
-$name="Webuser";
-
-
+if (isset($_GET['uid'])){
+	$id=$_GET['uid'];
+	$name=$_GET['name'];
+}else{
+	$id=$_POST['id'];
+	$name=$_POST['name'];
+}
 //dumping spaces to open up the flush buffer.
 echo str_repeat(" ", 1024), "\n";
 require('sql.php');

@@ -10,11 +10,10 @@ $server['h']='192.168.1.101';
 $server['p']=3000;
 $user="webbot";
 $pass="pass";
-$name="Webuser";
+$name=$_GET['name'];
 $connected=false;
 
-$id="1233";//temp
-
+$id=$_GET['uid'];
 echo str_repeat(" ", 1024), "\n";//dumping spaces to open up the flush buffer.
 
 function write($cmd,$server){fwrite($server['s'], $cmd."\n");}
