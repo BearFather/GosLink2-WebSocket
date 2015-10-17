@@ -43,13 +43,6 @@ elseif (isset($_POST['name'])){
 	formit($name,$id);
 }
 else{formit($name,$id);}
-/*
-else{
-//if you see this something is wrong.
-echo "umm you messed up!";
-var_dump($_POST);
-}
-*/
 ?>
 </body>
 </html>

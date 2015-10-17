@@ -54,7 +54,6 @@ function readon($server){
 		if ($line!=""){
 			if (strpos($line,":!:ping:!:")!== false){write(":!:pong:!:",$server);}
 			else if (strpos($line,":!:hangup:!:")!== false){$GLOBALS['connected']=false;}
-//			else if (strpos($line,":!:players:!:")!== false){echo "<span id=who>".substr($line,13)."<br>";}
 			else if (strpos($line,":!:players:!:")!== false){disPlayers(substr($line,13));}
 			else if (strpos($line,":!:info:!:")!== false){echo "<span id=info>".substr($line,10)."</span><br>";}
 			else{echo "<span id=gos>".$line."</span><br>";}
