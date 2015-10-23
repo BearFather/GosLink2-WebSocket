@@ -2,6 +2,16 @@
 <body id="body" OnLoad="document.chatform.smess.focus();">
 <link rel="stylesheet" type="text/css" href="style.css" />
 <?php
+$sqlinfo=array();
+$sqlinfo['address']="localhost";
+$sqlinfo['user']="root";
+$sqlinfo['password']="sql";
+//$sqlinfo['user']="sqluser";
+//$sqlinfo['password']="sqlpassword";
+$sqlinfo['db']="gosbot";
+$sqlinfo['table']="goschat";
+
+
 if (isset($_GET['uid'])){
 	$id=$_GET['uid'];
 	$name=$_GET['name'];
@@ -26,7 +36,7 @@ function formit($name,$id){
 
 //if message was sent and has a message.
 if (isset($_POST['name']) && $_POST['smess'] != "") {
-	$info=array("localhost","root","sql","gosbot","goschat");
+	$info=array($sqlinfo['address'],$sqlinfo['user'],$sqlinfo['password'],$sqlinfo['db'],$sqlinfo['table']);
 	$smess=$_POST['smess'];
 	$tgt="public";
 	// getting rid of the 's sql hates them

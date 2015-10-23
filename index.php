@@ -3,7 +3,7 @@
 <body id="body">
 <link rel="stylesheet" type="text/css" href="style.css" />
 <?php
-if(isset($_POST['name'])){
+if(isset($_POST['name'])&&$_POST['name']!=""){
 	$name = $_POST['name'];
 	$uid=rand(11,99).rand(11,99);
 	print("<h1>Bear's BBS Web Chat</h1>");
@@ -11,9 +11,11 @@ if(isset($_POST['name'])){
 	print("<iframe id=input src='input.php?name=".$name."&uid=".$uid."' width=620 height=60 marginwidth=0 marginheight=0 hspace=0 vspace=0 frameborder=0 scrolling=no></iframe>");
 	print("</html>");
 }else{
+        if (isset($_POST['name'])&&$_POST['name']==""){echo "<font color=red>";}
+        echo "Please choose a name: ";
         echo "<FORM NAME =userform METHOD =POST ACTION =''>";
         echo "<input type='text' VALUE='' name=name />";
-        echo "<INPUT TYPE = Submit Name = login id=chatbutton VALUE ='Login'>";
+        echo "<INPUT TYPE = Submit Name = login id=chatbutton VALUE ='Let&#39;s Chat'>";
         echo "</form>";
 }
 ?>

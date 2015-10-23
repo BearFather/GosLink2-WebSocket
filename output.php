@@ -10,6 +10,14 @@ $server['h']='192.168.1.101';
 $server['p']=3000;
 $user="webbot";
 $pass="pass";
+$sqlinfo=array();
+$sqlinfo['address']="localhost";
+$sqlinfo['user']="root";
+$sqlinfo['password']="sql";
+//$sqlinfo['user']="sqluser";
+//$sqlinfo['password']="sqlpassword";
+$sqlinfo['db']="gosbot";
+$sqlinfo['table']="goschat";
 $name=$_GET['name'];
 $connected=false;
 
@@ -48,6 +56,7 @@ function disPlayers($line){
 	echo "</tr></table>";
 }
 function readon($server){
+	echo "<span id=connect>Connected.<br></span>";
 	while ($GLOBALS['connected']){
 		$line=read ($server);
 		$line=trim($line);
@@ -67,7 +76,8 @@ function readon($server){
 }
 function checkSql($server){
 	if ($GLOBALS['connected']){
-		$info=array("localhost","root","sql","gosbot","goschat");
+		$sqlinfo=$GLOBALS['sqlinfo'];
+		$info=array($sqlinfo['address'],$sqlinfo['user'],$sqlinfo['password'],$sqlinfo['db'],$sqlinfo['table']);
 		$rtn=sqlg($info,"where id=".$GLOBALS['id']);
 		$delete=0;
 		if (mysql_num_rows($rtn) != 0){
@@ -96,6 +106,9 @@ function checkSql($server){
 	}
 }
 //begin connection
+echo "<span id=con>Connecting to server...</span><br>";
+ob_flush();
+flush();
 $server['s'] = fsockopen($server['h'], $server['p'], $errno, $errstr, 2);
 if($server['s']){
 	login($server);
