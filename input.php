@@ -1,5 +1,5 @@
 <html>
-<body id="body">
+<body id="body" OnLoad="document.chatform.smess.focus();">
 <link rel="stylesheet" type="text/css" href="style.css" />
 <?php
 if (isset($_GET['uid'])){

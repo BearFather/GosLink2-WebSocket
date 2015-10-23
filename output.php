@@ -61,6 +61,7 @@ function readon($server){
 		checkSql($server);
 		ob_flush();
 		flush();
+		echo " <script language=javascript>window.scroll(0,50000);</script>";
 		sleep(1);
 	}
 }
