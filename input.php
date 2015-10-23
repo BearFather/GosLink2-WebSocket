@@ -3,14 +3,14 @@
 <link rel="stylesheet" type="text/css" href="style.css" />
 <?php
 $sqlinfo=array();
+
+// EDIT THESE LINES
 $sqlinfo['address']="localhost";
-$sqlinfo['user']="root";
-$sqlinfo['password']="sql";
-//$sqlinfo['user']="sqluser";
-//$sqlinfo['password']="sqlpassword";
+$sqlinfo['user']="sqluser";
+$sqlinfo['password']="sqlpassword";
 $sqlinfo['db']="gosbot";
 $sqlinfo['table']="goschat";
-
+// DONE EDITING
 
 if (isset($_GET['uid'])){
 	$id=$_GET['uid'];

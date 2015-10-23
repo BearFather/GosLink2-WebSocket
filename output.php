@@ -6,18 +6,20 @@
 <?php
 require('sql.php');
 $server=array();
+$sqlinfo=array();
+
+// EDIT THESE LINES
 $server['h']='192.168.1.101';
 $server['p']=3000;
 $user="webbot";
 $pass="pass";
-$sqlinfo=array();
 $sqlinfo['address']="localhost";
-$sqlinfo['user']="root";
-$sqlinfo['password']="sql";
-//$sqlinfo['user']="sqluser";
-//$sqlinfo['password']="sqlpassword";
+$sqlinfo['user']="sqluser";
+$sqlinfo['password']="sqlpassword";
 $sqlinfo['db']="gosbot";
 $sqlinfo['table']="goschat";
+// NO MORE EDITING
+
 $name=$_GET['name'];
 $connected=false;
 
