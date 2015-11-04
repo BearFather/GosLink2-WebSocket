@@ -23,6 +23,7 @@ function sqlg($nf,$whre){
 	//Giving back results
 	return $results;
 }
+// requires full select statement
 function sql2g($nf,$whre){
         //Getting variables
         $saddy=$nf[0];
@@ -40,6 +41,7 @@ function sql2g($nf,$whre){
         //Giving back results
         return $results;
 }
+
 //Function to write data
 //
 //$info=array("localhost","usr","password","db","table");
@@ -74,6 +76,31 @@ function sqlw($amt,$vue,$nf,$dta){
 	mysql_close();
 	return $result;
 }
+
+//Function to update data
+//
+//$info=array("localhost","usr","password","db","table");
+//$value=array("value1","value2","and so on");
+//$data=array("col1","col2","and so on");
+//$id=array("field to check","value to check");
+//sqlu($value,$data,$id,$info);
+
+function sqlu($vue,$data,$id,$nf){
+	//Getting connect info
+        $saddy=$nf[0];
+        $susr=$nf[1];
+        $spw=$nf[2];
+        $sdb=$nf[3];
+        $stb=$nf[4];
+	//Writing info to SQL DB
+        mysql_connect($saddy,$susr,$spw);
+        @mysql_select_db($sdb) or die( "Unable to select database");
+	$query="UPDATE ".$stb." SET ".$data."='".$vue."' where ".$id[0]."=".$id[1];
+	$result=mysql_query($query);
+	mysql_close();
+	return $result;
+}
+
 //Function to delete records
 //
 //$info=array("localhost","root","sql","web","time");
@@ -114,80 +141,6 @@ function sqld($tpe,$rec,$nf){
 	else{$results="bad type";}
 	mysql_close();
 	return $results;
-}
-
-function sqlxg($nf,$whre, $lastid){
-        //Getting variables
-        $saddy=$nf[0];
-        $susr=$nf[1];
-        $spw=$nf[2];
-        $sdb=$nf[3];
-        $stb=$nf[4];
-        $wher=$whre;
-	$lid=$lastid;
-	$mline="";
-        //getting info from SQL
-        mysql_connect($saddy,$susr,$spw);
-        @mysql_select_db($sdb) or die( "Unable to select database");
-        $query="SELECT * FROM ".$stb." ".$wher;
-        $rtn=mysql_query($query);
-        mysql_close();
-        //Giving back results
-	$a=0;
-
-	while(mysql_numrows($rtn)>$a){
-		if(mysql_result($rtn,$a,"ID") > $lid){
-		$mtime[$a]=mysql_result($rtn,$a,"czas2");
-	        $site[$a]=mysql_result($rtn,$a,"site");
-	        $author[$a]=mysql_result($rtn,$a,"autor");
-	        $mess[$a]=mysql_result($rtn,$a,"tresc");}
-		else{$mess[$a]=mysql_result($rtn,$a,"ID")."is my id, and lastid is".$lid;}
-	$a++;}
-	$mtime=array_reverse($mtime);
-	$site=array_reverse($site);
-	$author=array_reverse($author);
-	$mess=array_reverse($mess);
-
-	$a=0;
-	while(count($mess)>$a){
-	        if ($site[$a] == "www"){$mline=$mline."<id=site>(".$site[$a].")</id>";}
-	        else if ($site[$a] == "serv"){$mline=$mline."<id=serv>(".$site[$a].")</id>";}
-	        $mline=$mline."<id=author>".$author[$a]."</id>: ";
-	        $mline=$mline."<id=mess>".$mess[$a]."</id><br>";
-	$a++;}
-
-        return $mline;
-}
-function sqlu($vue,$data,$nf){
-
-	//Getting connect info
-        $saddy=$nf[0];
-        $susr=$nf[1];
-        $spw=$nf[2];
-        $sdb=$nf[3];
-        $stb=$nf[4];
-	//Writing info to SQL DB
-        mysql_connect($saddy,$susr,$spw);
-        @mysql_select_db($sdb) or die( "Unable to select database");
-	$query="UPDATE ".$stb." SET euser='".$data."' where user='".$vue."'";
-	$result=mysql_query($query);
-	mysql_close();
-	return $result;
-}
-function sqlu2($vue,$data,$id,$nf){
-	//Getting connect info
-        $saddy=$nf[0];
-        $susr=$nf[1];
-        $spw=$nf[2];
-        $sdb=$nf[3];
-        $stb=$nf[4];
-	//Writing info to SQL DB
-        mysql_connect($saddy,$susr,$spw);
-        @mysql_select_db($sdb) or die( "Unable to select database");
-	$query="UPDATE ".$stb." SET ".$data."='".$vue."' where id=".$id;
-	$result=mysql_query($query);
-	mysql_close();
-	return $result;
 }
 
 
